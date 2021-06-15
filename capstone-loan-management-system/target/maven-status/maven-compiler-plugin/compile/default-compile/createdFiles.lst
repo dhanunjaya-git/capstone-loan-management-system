@@ -1,0 +1,11 @@
+com\capstone\loan\login\dto\MyUserDetails.class
+com\capstone\loan\login\dto\User.class
+com\capstone\loan\entity\Customer.class
+com\capstone\loan\LoanManagementApplication.class
+com\capstone\loan\controller\LoanController.class
+com\capstone\loan\repo\LoanRepository.class
+com\capstone\loan\config\LoanWebSecurityConfig.class
+com\capstone\loan\repo\UserRepository.class
+com\capstone\loan\service\impl\LoanServiceImpl.class
+com\capstone\loan\service\LoanService.class
+com\capstone\loan\entity\Loan.class
