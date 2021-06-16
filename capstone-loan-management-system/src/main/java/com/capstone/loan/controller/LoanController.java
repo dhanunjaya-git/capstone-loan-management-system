@@ -1,7 +1,5 @@
 package com.capstone.loan.controller;
 
-import java.net.URISyntaxException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.capstone.loan.entity.Customer;
 import com.capstone.loan.entity.Loan;
 import com.capstone.loan.login.dto.User;
 import com.capstone.loan.service.LoanService;
@@ -47,7 +44,7 @@ public class LoanController {
 	
 	
 	@PostMapping("/applyLoan")
-	public Mono<Loan> applyLoan(@RequestBody Loan loan) {
+	public Mono<Object> applyLoan(@RequestBody Loan loan) {
 		return loanService.applyLoan(loan);
 	}
 }

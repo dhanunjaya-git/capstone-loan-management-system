@@ -6,7 +6,7 @@ import reactor.core.publisher.Mono;
 
 public interface LoanService {
 
-	Mono<Loan> applyLoan(Loan loan);
+	Mono<Object> applyLoan(Loan loan);
 	
 	Mono<Loan> viewLoanDetails(Integer loanid);
 }

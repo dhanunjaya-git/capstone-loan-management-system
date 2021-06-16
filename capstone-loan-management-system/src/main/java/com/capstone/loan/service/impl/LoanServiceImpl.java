@@ -3,9 +3,9 @@ package com.capstone.loan.service.impl;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.capstone.loan.entity.Customer;
 import com.capstone.loan.entity.Loan;
 import com.capstone.loan.login.dto.User;
 import com.capstone.loan.repo.LoanRepository;
@@ -27,11 +27,11 @@ public class LoanServiceImpl implements LoanService {
 	
 	
 	@Override
-	public Mono<Loan> applyLoan(Loan loan) {
+	public Mono<Object> applyLoan(Loan loan) {
 		Mono<User> customer = repository.findById(loan.getAccountno());
 		return customer.flatMap(customerDetails -> {
 			 loan.setDate(new Date(System.currentTimeMillis()));
-			return loanRepository.save(loan);
+			return loanRepository.save(loan).map(savedLoanDetils -> ResponseEntity.ok(savedLoanDetils.getLoanid()));
 		});
 	}
 
