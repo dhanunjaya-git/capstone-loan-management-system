@@ -2,16 +2,28 @@ package com.capstone.loan.login.dto;
 
 import java.util.Collection;
 
+import org.jetbrains.annotations.NotNull;
 import org.springframework.security.core.userdetails.UserDetails;
 
 public class User {
 
+	@NotNull 
 	private String username;
+	@NotNull
     private String password;
     private Collection<String> roles;
+    private boolean loggedIn;
 
 
-    public UserDetails toUserDetails() {
+    public boolean isLoggedIn() {
+		return loggedIn;
+	}
+
+	public void setLoggedIn(boolean loggedIn) {
+		this.loggedIn = loggedIn;
+	}
+
+	public UserDetails toUserDetails() {
     	return new MyUserDetails();
     }
 

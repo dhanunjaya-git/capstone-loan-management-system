@@ -1,13 +1,15 @@
 package com.capstone.loan.repo;
 
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
+import org.springframework.stereotype.Repository;
 
-import com.capstone.loan.entity.Customer;
+import com.capstone.loan.login.dto.User;
 
 import reactor.core.publisher.Mono;
 
-public interface UserRepository extends ReactiveCrudRepository<Customer, Integer>{
+@Repository
+public interface UserRepository extends ReactiveCrudRepository<User, Integer>{
 	
-	Mono<Customer> findByUsernameAndPassword(String username, String password);
+	Mono<User> findUserByEmailAndPassword(String email, String password);
 
 }

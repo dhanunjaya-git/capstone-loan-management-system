@@ -8,11 +8,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.capstone.loan.entity.Customer;
 import com.capstone.loan.entity.Loan;
+import com.capstone.loan.login.dto.User;
 import com.capstone.loan.service.LoanService;
+import com.capstone.loan.service.UserService;
 
 import reactor.core.publisher.Mono;
 
@@ -24,15 +27,17 @@ public class LoanController {
 	private LoanService loanService;
 	
 	@Autowired
+	private UserService userservice;
+	
+	@Autowired
 	PasswordEncoder encoder;	
 	
 	
-	//TO DO need to implement login logic
-	@PostMapping("/customer/login")
-	public Mono<Customer> loginCustomer(@RequestBody Customer customer)
-			throws URISyntaxException {
-		customer.setPassword(encoder.encode(customer.getPassword()));
-		return loanService.loginUser(customer);
+	@PostMapping("/login")
+	public Mono<User> loginCustomer(@RequestParam("email") String email ,@RequestParam("password") String password){ 
+//		User user = new User();
+//		user.setPassword(encoder.encode(password));
+		return userservice.loginUser(email,password);
 	}
 	
 	@GetMapping("/loanDetails")
@@ -42,8 +47,7 @@ public class LoanController {
 	
 	
 	@PostMapping("/applyLoan")
-	public Mono<Loan> applyLoan(@RequestBody Loan loan)
-			throws URISyntaxException {
+	public Mono<Loan> applyLoan(@RequestBody Loan loan) {
 		return loanService.applyLoan(loan);
 	}
 }
